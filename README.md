@@ -16,44 +16,26 @@ koko189@immortal-system:~$ whoami
 koko189@immortal-system:~$ ./check_active_cores
 > Status: kali-Linux-android [ACTIVE], acode-plugin-docs [READY]
 koko189@immortal-system:~$ _
----
-
-### 📡 رادار تعقب الأهداف (Target Radar)
-<p align="center">
+📡 رادار تعقب الأهداف
+​<p align="center">
 <img src="https://komarev.com/ghpvc/?username=koko189&label=TARGETS_ACQUIRED&color=00ff00&style=for-the-badge" />
 <img src="https://img.shields.io/badge/SIGNAL-ENCRYPTED-red?style=for-the-badge" />
 </p>
-
----
-
-### 🛡️ الترسانة الرقمية (The Global Arsenal)
-<p align="center">
+​🛡️ الترسانة الرقمية
+​<p align="center">
 <img src="https://skillicons.dev/icons?i=kali,linux,ts,js,nodejs,android,bash,python,docker,git,vscode&perline=6" />
 </p>
-
----
-
-### 📊 مصفوفة البيانات الكبرى
-| 🌌 مستوى السيطرة | 🧬 تحليل الشيفرة |
-| :---: | :---: |
-| <img src="https://github-readme-stats.vercel.app/api?username=koko189&show_icons=true&theme=vivid&hide_border=true&title_color=ff0000&icon_color=ff0000&bg_color=00000000" /> | <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=koko189&layout=compact&theme=vivid&hide_border=true&title_color=800080&bg_color=00000000" /> |
-
----
-
-### 📥 بروتوكول التشفير النهائي
-```ascii
+​🐍 مصفوفة المساهمات النشطة
+​📊 مصفوفة البيانات الكبرى
+🌌 مستوى السيطرة 🧬 تحليل الشيفرة
+<img src="https://github-readme-stats.vercel.app/api?username=koko189&show_icons=true&theme=vivid&hide_border=true&title_color=ff0000&icon_color=ff0000&bg_color=00000000" /> <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=koko189&layout=compact&theme=vivid&hide_border=true&title_color=800080&bg_color=00000000" />
+🛡️ نظام الرصد النشط
    _____ _    _  _____  ______ 
   / ____| |  | |/ ____|/ ____|
  | (___ | |__| | (___ | (___  
   \___ \|  __  |\___ \ \___ \ 
   ____) | |  | |____) |____) |
  |_____/|_|  |_|_____/|_____/ 
-`[ DECRYPTING_MESSAGE: WELCOME_TO_MY_DOMAIN ]`
-
-[![](https://img.shields.io/badge/ENTER_THE_VOID-FF0000?style=for-the-badge&logo=target&logoColor=white)](https://github.com/koko189)
-
----
-
-<img src="https://capsule-render.vercel.app/render?type=waving&color=0:ff0000,100:0000ff&height=100&section=footer&flip=true" width="100%" />
-
-</div>
+[ رسالة فك التشفير: أهلاً بك في نطاقي ]
+​<img src="https://capsule-render.vercel.app/render?type=waving&color=0:ff0000,100:0000ff&height=100&section=footer&flip=true" width="100%" />
+​</div>

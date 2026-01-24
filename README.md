@@ -1,41 +1,143 @@
-<div align="center">
+import os
+import time
+import json
+import threading
+import random
+from flask import Flask, render_template_string, jsonify, request
+from cryptography.fernet import Fernet
+from colorama import Fore, Style, init
 
-<img src="https://capsule-render.vercel.app/render?type=glitch&color=000000&height=300&section=header&text=KOKO%20189&fontSize=90&animation=glitch&fontAlignY=40&secondaryText=إمبراطور%20الخالد%20الاختراق%20المهيب&secondaryTextSize=30&secondaryTextWeight=800" width="100%" />
+init(autoreset=True)
 
----
+# ==========================================
+# 1. النواة والأمن (The Core & Crypto)
+# ==========================================
+class KCF_Matrix_Core:
+    def __init__(self):
+        self.key = Fernet.generate_key()
+        self.cipher = Fernet(self.key)
+        self.nodes = {}  # قاعدة بيانات الأجهزة المرتبطة
+        self.logs = []
+        self.dictionary = {
+            "OSINT": "Open Source Intelligence",
+            "AES-256": "Advanced Encryption Standard",
+            "Node": "An active endpoint in the framework"
+        }
 
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=25&pause=1000&color=FF0000&center=true&vCenter=true&width=600&lines=Welcome+to+the+Immortal+Domain...;Executing+Penetration+Protocols...;Access+Granted+to+صاحب+الجواهر;System+Status:+ETERNAL+MODE+ACTIVE" />
-</p>
+    def log_event(self, msg):
+        timestamp = time.strftime("%H:%M:%S")
+        self.logs.append(f"[{timestamp}] {msg}")
 
----
+# ==========================================
+# 2. خادم الويب واللوحة التفاعلية (The Neon Dashboard)
+# ==========================================
+app = Flask(__name__)
+matrix = KCF_Matrix_Core()
 
-```bash
-koko189@immortal-system:~$ whoami
-> صاحب الجواهر: إمبراطور الخالد الاختراق المهيب
-koko189@immortal-system:~$ ./check_active_cores
-> Status: kali-Linux-android [ACTIVE], acode-plugin-docs [READY]
-koko189@immortal-system:~$ _
-📡 رادار تعقب الأهداف
-​<p align="center">
-<img src="https://komarev.com/ghpvc/?username=koko189&label=TARGETS_ACQUIRED&color=00ff00&style=for-the-badge" />
-<img src="https://img.shields.io/badge/SIGNAL-ENCRYPTED-red?style=for-the-badge" />
-</p>
-​🛡️ الترسانة الرقمية
-​<p align="center">
-<img src="https://skillicons.dev/icons?i=kali,linux,ts,js,nodejs,android,bash,python,docker,git,vscode&perline=6" />
-</p>
-​🐍 مصفوفة المساهمات النشطة
-​📊 مصفوفة البيانات الكبرى
-🌌 مستوى السيطرة 🧬 تحليل الشيفرة
-<img src="https://github-readme-stats.vercel.app/api?username=koko189&show_icons=true&theme=vivid&hide_border=true&title_color=ff0000&icon_color=ff0000&bg_color=00000000" /> <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=koko189&layout=compact&theme=vivid&hide_border=true&title_color=800080&bg_color=00000000" />
-🛡️ نظام الرصد النشط
-   _____ _    _  _____  ______ 
-  / ____| |  | |/ ____|/ ____|
- | (___ | |__| | (___ | (___  
-  \___ \|  __  |\___ \ \___ \ 
-  ____) | |  | |____) |____) |
- |_____/|_|  |_|_____/|_____/ 
-[ رسالة فك التشفير: أهلاً بك في نطاقي ]
-​<img src="https://capsule-render.vercel.app/render?type=waving&color=0:ff0000,100:0000ff&height=100&section=footer&flip=true" width="100%" />
-​</div>
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KCF ETERNAL MATRIX</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #050505; color: #00ff41; font-family: 'Courier New'; padding: 20px; }
+        .neon-border { border: 2px solid #00ff41; box-shadow: 0 0 15px #00ff41; padding: 20px; margin-bottom: 20px; border-radius: 10px; }
+        h1 { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        canvas { max-width: 100%; background: #111; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>KCF - ETERNAL COMMAND CENTER 👑</h1>
+    <div class="grid">
+        <div class="neon-border">
+            <h3>Connected Nodes Status</h3>
+            <canvas id="trafficChart"></canvas>
+        </div>
+        <div class="neon-border">
+            <h3>System Logs</h3>
+            <div id="logBox" style="height: 200px; overflow-y: scroll; font-size: 12px; text-align: left;">
+                {% for log in logs %} <p>> {{ log }}</p> {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('trafficChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1s', '2s', '3s', '4s', '5s', '6s'],
+                datasets: [{
+                    label: 'Signal Strength (dBm)',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderColor: '#ff00ff',
+                    tension: 0.4
+                }]
+            }
+        });
+        setInterval(() => { location.reload(); }, 5000); // تحديث تلقائي لمحاكاة اللوحة التفاعلية
+    </script>
+</body>
+</html>
+"""
+
+@app.route('/')
+def index():
+    return render_template_string(HTML_TEMPLATE, logs=matrix.logs)
+
+@app.route('/api/register', methods=['POST'])
+def register_node():
+    node_id = request.json.get('id')
+    matrix.nodes[node_id] = "ONLINE"
+    matrix.log_event(f"New Node Detected: {node_id}")
+    return jsonify({"status": "Success", "key": "SECURED"})
+
+# ==========================================
+# 3. محرك العميل (The Node Agent)
+# ==========================================
+def node_agent_mock(node_id):
+    """محاكاة لعميل يتم تثبيته على الأجهزة الأخرى"""
+    time.sleep(5)
+    matrix.log_event(f"Agent {node_id} established handshake...")
+    while True:
+        # محاكاة إرسال بيانات استخباراتية للخادم
+        time.sleep(10)
+        matrix.log_event(f"Data packet received from {node_id}")
+
+# ==========================================
+# 4. المحرك الرئيسي (Master Launcher)
+# ==========================================
+def run_matrix():
+    print(Fore.RED + Style.BRIGHT + r"""
+  ███████╗████████╗███████╗██████╗ ███╗   ██╗ █████╗ ██╗
+  ██╔════╝╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔══██╗██║
+  █████╗     ██║   █████╗  ██████╔╝██╔██╗ ██║███████║██║
+  ██╔══╝     ██║   ██╔══╝  ██╔══██╗██║╚██╗██║██╔══██║██║
+  ███████╗   ██║   ███████╗██║  ██║██║ ╚████║██║  ██║███████╗
+  ╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
+    [ KCF FINAL SYNTHESIS ] [ OWNER: صاحب الجواهر ]
+    """)
+    
+    matrix.log_event("Initializing Eternal Core...")
+    matrix.log_event("Starting Web Dashboard on port 5000...")
+
+    # تشغيل الخادم والعملاء في خيوط (Threads) منفصلة
+    threading.Thread(target=lambda: app.run(port=5000, debug=False, use_reloader=False)).start()
+    threading.Thread(target=node_agent_mock, args=("NODE-ALPHA",)).start()
+    threading.Thread(target=node_agent_mock, args=("NODE-BETA",)).start()
+
+    while True:
+        cmd = input(f"{Fore.GREEN}KCF_MASTER > {Fore.WHITE}").strip().lower()
+        if cmd == "help":
+            print("الأوامر: status, dict, logs, exit")
+        elif cmd == "status":
+            print(f"Nodes: {matrix.nodes}")
+        elif cmd == "dict":
+            print(json.dumps(matrix.dictionary, indent=2))
+        elif cmd == "exit":
+            os._exit(0)
+
+if __name__ == "__main__":
+    run_matrix()
